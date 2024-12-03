@@ -49,8 +49,7 @@ const DonorRegistration = () => {
 
   useEffect(() => {
     if (donor) {
-      // Navigate to the dashboard or home page upon successful registration
-      navigate("/");
+      navigate("/donor-dashboard");
     }
   }, [donor, navigate]);
 

@@ -23,6 +23,7 @@ import ViewRequests from "./hospitaldashboard/components/viewrequests.jsx";
 import HospitalHeader from "./hospitaldashboard/components/hospitalheader.jsx";
 import ManageBloodBank from "./hospitaldashboard/components/managebloodbank.jsx";
 import BloodInventory from "./hospitaldashboard/components/bloodbank.jsx";
+import RegistrationForm from "./userdashboard/components/usereditprofile.jsx";
 
 
 function App() {
@@ -33,64 +34,72 @@ function App() {
         {/* Public Routes */}
         <Route path="/" element={<AppLayout><Hero /></AppLayout>} />
         <Route path="/login" element={<AppLayout><Login /></AppLayout>} />
-        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/forgot-password" element={<AppLayout><ForgotPassword /></AppLayout>} />
         <Route path="/Reset-password" element={<AppLayout><ResetPassword /></AppLayout>} />
         <Route path="/signup" element={<AppLayout><SignUpPage /></AppLayout>} />
-        <Route path="/hospital-registration" element={<HospitalRegistration />} />
-        <Route path="/donor-registration" element={<DonorRegistration />} />
+        <Route path="/hospital-registration" element={<AppLayout><HospitalRegistration /></AppLayout>} />
+        <Route path="/donor-registration" element={<AppLayout><DonorRegistration /></AppLayout>} />
 
         <Route
   path="/hospital-dashboard"
   element={
-    <ProtectedRoute requiredRole='hospital'>
+    // <ProtectedRoute requiredRole='hospital'>
       <HospitalLayout>
         <HospitalInfo />
       </HospitalLayout>
-    </ProtectedRoute>
+    // </ProtectedRoute>
   }
 />
 
 <Route
   path="/edit-profile"
   element={
-    <ProtectedRoute requiredRole='hospital'>
+    // <ProtectedRoute requiredRole='hospital'>
       <HospitalLayout>
         <HospitalEditProfile />
       </HospitalLayout>
-    </ProtectedRoute>
+    // </ProtectedRoute>
   }
 />
-
 <Route
-  path="/view-rating"
+  path="/Blood-inventory"
   element={
-    <ProtectedRoute requiredRole='hospital'>
+    // <ProtectedRoute requiredRole='hospital'>
       <HospitalLayout>
-        <DonationHistory />
+        <BloodInventory />
       </HospitalLayout>
-    </ProtectedRoute>
+    // </ProtectedRoute>
   }
 />
-
 <Route
   path="/view-reviews"
   element={
-    <ProtectedRoute requiredRole='hospital'>
+    // <ProtectedRoute requiredRole='hospital'>
       <HospitalLayout>
         <Reviews />
       </HospitalLayout>
-    </ProtectedRoute>
+    // </ProtectedRoute>
   }
 />
 
 <Route
   path="/view-requests"
   element={
-    <ProtectedRoute requiredRole='hospital'>
+    // <ProtectedRoute requiredRole='hospital'>
       <HospitalLayout>
         <ViewRequests />
       </HospitalLayout>
-    </ProtectedRoute>
+    // </ProtectedRoute>
+  }
+/>
+<Route
+  path="/view-bloodbank"
+  element={
+    // <ProtectedRoute requiredRole='hospital'>
+      <HospitalLayout>
+        <ManageBloodBank />
+      </HospitalLayout>
+    // </ProtectedRoute>
   }
 />
 
@@ -99,15 +108,23 @@ function App() {
   path="/donor-dashboard"
   element={
     <ProtectedRoute requiredRole='donor'>
-      <DonationHistory />
+      <UserInfoCard />
     </ProtectedRoute>
+  }
+/>
+<Route
+  path="/donor-editprofile"
+  element={
+     <ProtectedRoute requiredRole='donor'>
+      <RegistrationForm/>
+     </ProtectedRoute>
   }
 />
 
 <Route
   path="/Give-rating"
   element={
-    <ProtectedRoute requiredRole='donor'>
+     <ProtectedRoute requiredRole='donor'>
       <GiveRating />
     </ProtectedRoute>
   }
@@ -116,11 +133,23 @@ function App() {
 <Route
   path="/Pulse-Verified-Hospitals"
   element={
-    <ProtectedRoute requiredRole='donor'>
+     <ProtectedRoute requiredRole='donor'>
       <HospitalCards />
-    </ProtectedRoute>
+     </ProtectedRoute>
   }
 />
+
+<Route
+  path="/Donation-history"
+  element={
+    <ProtectedRoute requiredRole='donor'>
+      <HospitalLayout>
+        <DonationHistory />
+      </HospitalLayout>
+     </ProtectedRoute>
+  }
+/>
+
       </Routes>
     </Router>
   );

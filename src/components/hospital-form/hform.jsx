@@ -9,13 +9,15 @@ const HospitalRegistration = () => {
 
   // Retrieve user details from Redux store
   const { user } = useSelector((state) => state.auth);
-  const userId = user?.id || 0; // Default to 0 if user is not found
+  const { loading, error, hospital } = useSelector((state) => state.hospital);
+
+  const userId = user?.id || 0; // Default to 0 if user is not logged in
   const username = user?.username || "";
 
-  // State to hold form data
+  // Form state
   const [formData, setFormData] = useState({
     userId,
-    roleId: "",
+    roleId: "", // Ensure this is properly assigned or used
     fullName: username,
     phoneNumber: "",
     emergencyContact: "",
@@ -26,42 +28,46 @@ const HospitalRegistration = () => {
     licenseExpiryDate: "",
   });
 
-  const { loading, error, hospital } = useSelector((state) => state.hospital);
-  const [isSubmitted, setIsSubmitted] = useState(false); // Track if form is submitted
+  // Track form submission status
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
+  // Handle input changes
   const handleChange = (e) => {
     const { id, value } = e.target;
-    setFormData({ ...formData, [id]: value });
+    setFormData((prev) => ({ ...prev, [id]: value }));
   };
 
-  // Trigger effect only when form submission is complete
-  useEffect(() => {
-    if (isSubmitted && !loading && !error && hospital) {
-      navigate("/dashboard");
-    }
-  }, [isSubmitted, loading, error, hospital, navigate]);
-
+  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Prepare hospital data for dispatch
-    const hospitalData = { ...formData, userId, roleId: "" }; // Ensure roleId is passed
+    // Ensure userId is set and prepare hospital data
+    const hospitalData = { ...formData, userId, roleId: "" }; // Adjust roleId as necessary
     dispatch(registerHospital(hospitalData));
 
-    // Set form as submitted
-    setIsSubmitted(true);
+    setIsSubmitted(true); // Mark form as submitted
   };
+
+  // Navigate to dashboard on successful registration
+  useEffect(() => {
+    if (isSubmitted && !loading && !error && hospital) {
+      navigate("/hospital-dashboard");
+    }
+  }, [isSubmitted, loading, error, hospital, navigate]);
 
   return (
     <div className="flex items-center justify-center h-screen bg-rose-200">
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-5xl">
         <h2 className="text-2xl font-bold text-gray-700 mb-6">Hospital Registration</h2>
 
+        {/* Loading State */}
         {loading && <div className="text-center text-xl text-gray-600">Loading...</div>}
-        {error && <div className="text-center text-red-600">{error}</div>}
+
+        {/* Error Message */}
+        {error && <div className="text-center text-red-600">Error: {error}</div>}
 
         <form className="grid grid-cols-2 gap-6" onSubmit={handleSubmit}>
-          {/* Owner Name */}
+          {/* Full Name */}
           <div>
             <label htmlFor="fullName" className="block text-sm font-medium text-gray-700">
               Owner Name
@@ -183,7 +189,10 @@ const HospitalRegistration = () => {
           </div>
 
           {/* Submit Button */}
-          <button type="submit" className="mt-4 w-full bg-rose-700 text-white py-2 px-4 rounded-md">
+          <button
+            type="submit"
+            className="mt-4 w-full bg-rose-700 text-white py-2 px-4 rounded-md col-span-2"
+          >
             Register Hospital
           </button>
         </form>

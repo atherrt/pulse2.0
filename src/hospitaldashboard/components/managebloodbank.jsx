@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchBloodBankRequests } from '../../features/manageBloodBankSlice';
+import { useNavigate } from 'react-router-dom';
 
 const ManageBloodBank = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate(); // Initialize the navigate function
   const { data: requests, loading, error } = useSelector(
     (state) => state.manageBloodBank
   );
@@ -29,14 +31,24 @@ const ManageBloodBank = () => {
           <p className="text-gray-700">Type: {request.type}</p>
           <p className="text-gray-700">Date of donation: {request.dateOfDonation}</p>
           <p className="text-gray-700">Time of donation: {request.timeOfDonation}</p>
-          <button className="mt-4 bg-red-700 text-white py-2 px-4 rounded hover:bg-red-800">
-            Add to blood bank
-          </button>
+          <button
+  onClick={() => {
+    // Perform additional actions here if needed
+    console.log("Blood added to the bank!");
+    alert("Added Successfully");
+  }}
+  className="mt-4 bg-red-700 text-white py-2 px-4 rounded hover:bg-red-800"
+>
+  Add to blood bank
+</button>
         </div>
       ))}
 
       {/* View Blood Bank Button */}
-      <button className="mt-8 bg-red-700 text-white py-3 px-6 rounded hover:bg-red-800">
+      <button
+        onClick={() => navigate('/Blood-inventory')} // Routto "View Blood Bank" page
+        className="mt-8 bg-red-700 text-white py-3 px-6 rounded hover:bg-red-800"
+      >
         View Blood Bank
       </button>
     </div>

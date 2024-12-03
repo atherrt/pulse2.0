@@ -1,49 +1,27 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-// Toggle between using API or dummy data
-const USE_DUMMY_DATA = true;
-
-// Dummy Data
-const dummyData = {
-  name: "JOHN DOE",
-  cnic: "3520278562465",
-  age: 25,
-  phone: "03054628733",
-  email: "john@gmail.com",
-  bloodGroup: "A+",
-  weight: 52,
-  height: 152,
-  bmi: 25,
-  healthStatus: "Healthy",
-  donations: 10,
-  received: 5,
-  feedBacks: 10,
-  badgeEarned: "GOLD",
-};
-
 // Async thunk to fetch user data from API
-export const fetchUserInfo = createAsyncThunk('userInfo/fetchUserInfo', async (_, { rejectWithValue }) => {
-  if (USE_DUMMY_DATA) {
-
-    return dummyData;
+export const fetchUserInfo = createAsyncThunk(
+  'userInfo/fetchUserInfo',
+  async (Id, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(`http://localhost:5000/users/${Id}`); // Fetch user by ID
+      return response.data; // Assuming response contains the user object
+    } catch (error) {
+      return rejectWithValue('Failed to fetch user information from the API');
+    }
   }
+);
 
-  try {
-    const response = await axios.get('/api/userInfo'); // Replace with your actual API endpoint
-    return response.data;
-  } catch (error) {
-    return rejectWithValue('Failed to fetch user information from API');
-  }
-});
 
 // Redux slice
 const userInfoSlice = createSlice({
   name: 'userInfo',
   initialState: {
-    data: null,
+    data: null, // To store user data
     status: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'
-    error: null,
+    error: null, // To store error messages, if any
   },
   reducers: {
     // Optional reducer for manually resetting the state
@@ -61,7 +39,7 @@ const userInfoSlice = createSlice({
       })
       .addCase(fetchUserInfo.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.data = action.payload;
+        state.data = action.payload; // Store fetched user data
       })
       .addCase(fetchUserInfo.rejected, (state, action) => {
         state.status = 'failed';

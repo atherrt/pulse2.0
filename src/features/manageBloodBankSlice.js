@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 // Dummy API base URL (you should update this to your actual db.json endpoint)
-const API_URL = 'http://localhost:3000/bloodBankRequests'; // Assuming db.json is served from here
+const API_URL = 'http://localhost:5000/bloodBankRequests'; // Assuming db.json is served from here
 
 // Async thunk to fetch blood bank requests (GET request)
 export const fetchBloodBankRequests = createAsyncThunk(

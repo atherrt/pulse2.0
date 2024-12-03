@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../features/authSlice'; // Adjust the path as necessary
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const HospitalHeader = () => {
   const dispatch = useDispatch();
@@ -26,21 +26,21 @@ const HospitalHeader = () => {
 
       {/* Navigation Links */}
       <nav className="flex items-center space-x-8 text-sm">
-        <a href="#nearby-hospitals" className="text-red-600 hover:underline">
+        <Link to="/Pulse-Verified-Hospitals" className="text-red-600 hover:underline">
           VIEW PULSE VERIFIED HOSPITALS
-        </a>
-        <a href="#donate" className="text-red-600 hover:underline">
+        </Link>
+        <Link to="/donate" className="text-red-600 hover:underline">
           DONATE
-        </a>
-        <a href="#request-blood" className="text-red-600 hover:underline">
+        </Link>
+        <Link to="/request-blood" className="text-red-600 hover:underline">
           REQUEST BLOOD
-        </a>
-        <a href="#give-rating" className="text-gray-700 hover:underline">
+        </Link>
+        <Link to="/give-rating" className="text-gray-700 hover:underline">
           Give Rating
-        </a>
-        <a href="#edit-profile" className="text-gray-700 hover:underline">
+        </Link>
+        <Link to="/edit-profile" className="text-gray-700 hover:underline">
           Edit Profile
-        </a>
+        </Link>
       </nav>
 
       {/* Logout Button */}

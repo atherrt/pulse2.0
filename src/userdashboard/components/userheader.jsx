@@ -1,8 +1,14 @@
 import React from 'react';
 import { Link} from 'react-router-dom'; // Import Link and useHistory for routing
-
+import { logout } from '../../features/authSlice'; 
 const UserHeader = () => {
-  
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch(logout()); // Dispatch the logout action
+    navigate('/login'); // Redirect to the login page after logout
+  };
 
   return (
     <header className="flex items-center justify-between px-8 py-4 bg-white shadow-md">
@@ -18,7 +24,7 @@ const UserHeader = () => {
 
       {/* Navigation Links */}
       <nav className="flex items-center space-x-8 text-sm">
-        <Link to="#nearby-hospitals" className="text-red-600 hover:underline">
+        <Link to="/Pulse-Verified-Hospitals" className="text-red-600 hover:underline">
           VIEW PULSE VERIFIED HOSPITALS
         </Link>
         <Link to='/donate' className="text-red-600 hover:underline">
