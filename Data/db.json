@@ -1,0 +1,290 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "username": "john_doe",
+      "email": "john.doe@example.com",
+      "password": "password123",
+      "roleId": 1,
+      "hospitalId": 101,
+      "patientId": 501
+    },
+    {
+      "id": "2",
+      "username": "jane_doe",
+      "email": "jane.doe@example.com",
+      "password": "password456",
+      "roleId": 2,
+      "hospitalId": 102,
+      "patientId": 502
+    },
+    {
+      "id": "9342",
+      "username": "Hassan",
+      "email": "hjamshaid81@gmail.com",
+      "password": "1",
+      "roleId": 3,
+      "hospitalId": 0,
+      "patientId": 0
+    },
+    {
+      "id": "c18a",
+      "username": "Hassan",
+      "email": "test@email.com",
+      "password": "123",
+      "roleId": 1,
+      "hospitalId": 101
+    },
+    {
+      "id": "f959",
+      "username": "shayaan",
+      "email": "shayan@gmail.com",
+      "password": "shayaan",
+      "roleId": "hospital"
+    },
+    {
+      "id": "0504",
+      "username": "ali",
+      "email": "ali@gmail.com",
+      "password": "ali",
+      "roleId": "hospital"
+    }
+  ],
+  "hospitals": [
+    {
+      "id": "101",
+      "name": "City Hospital",
+      "address": "123 Main St, Cityville",
+      "contact": "123-456-7890",
+      "email": "contact@cityhospital.com",
+      "specialties": [
+        "Cardiology",
+        "Neurology"
+      ],
+      "websiteURL": "https://cityhospital.com",
+      "licenseNumber": "12345",
+      "licenseExpiryDate": "2025-12-31",
+      "ratings": [
+        {
+          "userId": 1,
+          "rating": 4,
+          "comment": "Great service, friendly staff."
+        },
+        {
+          "userId": 2,
+          "rating": 5,
+          "comment": "Amazing experience, would recommend!"
+        }
+      ]
+    },
+    {
+      "id": "102",
+      "name": "Green Valley Hospital",
+      "address": "456 Oak Rd, Greenfield",
+      "contact": "987-654-3210",
+      "email": "info@greenvalleyhospital.com",
+      "specialties": [
+        "Orthopedics",
+        "Pediatrics"
+      ],
+      "websiteURL": "https://greenvalleyhospital.com",
+      "licenseNumber": "67890",
+      "licenseExpiryDate": "2024-06-15",
+      "ratings": [
+        {
+          "userId": 2,
+          "rating": 3,
+          "comment": "Decent hospital, could improve on staff responsiveness."
+        }
+      ]
+    }
+  ],
+  "reviews": [
+    {
+      "id": "1",
+      "hospital": "City Hospital",
+      "rating": 4.5,
+      "review": "Great service!"
+    },
+    {
+      "id": "2",
+      "hospital": "City Hospital",
+      "rating": 3.8,
+      "review": "Good experience overall."
+    },
+    {
+      "id": "3",
+      "hospital": "General Hospital",
+      "rating": 4,
+      "review": "Friendly staff, clean environment."
+    },
+    {
+      "id": "4",
+      "hospital": "City Hospital",
+      "rating": 5,
+      "review": "Excellent care and facilities!"
+    },
+    {
+      "id": "5",
+      "hospital": "General Hospital",
+      "rating": 3,
+      "review": "Could improve waiting times."
+    }
+  ],
+  "bloodInventory": [
+    {
+      "group": "A+",
+      "bottles": 25,
+      "id": "2efa"
+    },
+    {
+      "group": "A-",
+      "bottles": 12,
+      "id": "7398"
+    },
+    {
+      "group": "B+",
+      "bottles": 20,
+      "id": "1fee"
+    },
+    {
+      "group": "B-",
+      "bottles": 10,
+      "id": "dbb2"
+    },
+    {
+      "group": "O+",
+      "bottles": 30,
+      "id": "c0a3"
+    },
+    {
+      "group": "O-",
+      "bottles": 15,
+      "id": "01ad"
+    },
+    {
+      "group": "AB+",
+      "bottles": 8,
+      "id": "7efe"
+    },
+    {
+      "group": "AB-",
+      "bottles": 5,
+      "id": "98c8"
+    }
+  ],
+  "donations": [
+    {
+      "id": "1",
+      "date": "12/1/2024",
+      "hospitalName": "Jinnah Hospital",
+      "address": "Lorem Ipsum Lorem Ipsum...",
+      "bottles": 2
+    },
+    {
+      "id": "2",
+      "date": "12/1/2024",
+      "hospitalName": "Jinnah Hospital",
+      "address": "Lorem Ipsum Lorem Ipsum...",
+      "bottles": 3
+    },
+    {
+      "id": "3",
+      "date": "12/1/2024",
+      "hospitalName": "Jinnah Hospital",
+      "address": "Lorem Ipsum Lorem Ipsum...",
+      "bottles": 1
+    },
+    {
+      "id": "4",
+      "date": "12/1/2024",
+      "hospitalName": "Jinnah Hospital",
+      "address": "Lorem Ipsum Lorem Ipsum...",
+      "bottles": 4
+    },
+    {
+      "id": "5",
+      "date": "12/1/2024",
+      "hospitalName": "Jinnah Hospital",
+      "address": "Lorem Ipsum Lorem Ipsum...",
+      "bottles": 2
+    },
+    {
+      "id": "6",
+      "date": "12/1/2024",
+      "hospitalName": "Jinnah Hospital",
+      "address": "Lorem Ipsum Lorem Ipsum...",
+      "bottles": 3
+    },
+    {
+      "id": "7",
+      "date": "12/1/2024",
+      "hospitalName": "Jinnah Hospital",
+      "address": "Lorem Ipsum Lorem Ipsum...",
+      "bottles": 1
+    },
+    {
+      "id": "8",
+      "date": "12/1/2024",
+      "hospitalName": "Jinnah Hospital",
+      "address": "Lorem Ipsum Lorem Ipsum...",
+      "bottles": 2
+    },
+    {
+      "id": "9",
+      "date": "12/1/2024",
+      "hospitalName": "Jinnah Hospital",
+      "address": "Lorem Ipsum Lorem Ipsum...",
+      "bottles": 3
+    }
+  ],
+  "donors": [
+    {
+      "id": "1",
+      "fullName": "John Doe",
+      "dob": "1998-01-01",
+      "phoneNumber": "03054628733",
+      "emergencyContact": "03051234567",
+      "bloodGroup": "A+",
+      "email": "john@gmail.com",
+      "weight": "70",
+      "height": "180",
+      "cnic": "123456789",
+      "address": "123 Street, City, Country"
+    }
+  ],
+  "requests": [
+    {
+      "id": "1",
+      "name": "Ather Tahir",
+      "bloodGroup": "B+",
+      "type": "Donation",
+      "dateOfDonation": "12-12-24",
+      "timeOfDonation": "11:30"
+    },
+    {
+      "id": "2",
+      "name": "Osamah Ashraf",
+      "bloodGroup": "B+",
+      "type": "Donation",
+      "dateOfDonation": "12-12-24",
+      "timeOfDonation": "11:30"
+    },
+    {
+      "id": "66d4",
+      "name": "New Donor",
+      "bloodGroup": "O+",
+      "type": "Donation",
+      "dateOfDonation": "12-12-2024",
+      "timeOfDonation": "10:00"
+    },
+    {
+      "id": "cd04",
+      "name": "New Donor",
+      "bloodGroup": "O+",
+      "type": "Donation",
+      "dateOfDonation": "12-12-2024",
+      "timeOfDonation": "10:00"
+    }
+  ]
+}
