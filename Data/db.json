@@ -97,6 +97,20 @@
       "email": "a@gmail.com",
       "password": "1",
       "roleId": "hospital"
+    },
+    {
+      "id": "6a7c",
+      "username": "hmm",
+      "email": "hmm@gamil.com",
+      "password": "hmm",
+      "roleId": "hospital"
+    },
+    {
+      "id": "3108",
+      "username": "a",
+      "email": "a@gmail.com",
+      "password": "a",
+      "roleId": "hospital"
     }
   ],
   "hospitals": [
