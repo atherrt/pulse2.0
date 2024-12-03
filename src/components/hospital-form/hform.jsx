@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { registerHospital } from "../../features/hospitalSlice";
@@ -11,12 +11,11 @@ const HospitalRegistration = () => {
   const { user } = useSelector((state) => state.auth);
   const userId = user?.id || 0; // Default to 0 if user is not found
   const username = user?.username || "";
-  console.log(userId);
 
   // State to hold form data
   const [formData, setFormData] = useState({
     userId,
-    roleId: 1,
+    roleId: "",
     fullName: username,
     phoneNumber: "",
     emergencyContact: "",
@@ -27,24 +26,31 @@ const HospitalRegistration = () => {
     licenseExpiryDate: "",
   });
 
-  const { loading, error } = useSelector((state) => state.hospital);
+  const { loading, error, hospital } = useSelector((state) => state.hospital);
+  const [isSubmitted, setIsSubmitted] = useState(false); // Track if form is submitted
 
   const handleChange = (e) => {
     const { id, value } = e.target;
     setFormData({ ...formData, [id]: value });
   };
 
+  // Trigger effect only when form submission is complete
+  useEffect(() => {
+    if (isSubmitted && !loading && !error && hospital) {
+      navigate("/dashboard");
+    }
+  }, [isSubmitted, loading, error, hospital, navigate]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     // Prepare hospital data for dispatch
-    const hospitalData = { ...formData, userId, roleId: 1 }; // Ensure roleId is passed
+    const hospitalData = { ...formData, userId, roleId: "" }; // Ensure roleId is passed
     dispatch(registerHospital(hospitalData));
-  };
 
-  if (!loading && !error && formData.hospitalName) {
-    navigate("/dashboard");
-  }
+    // Set form as submitted
+    setIsSubmitted(true);
+  };
 
   return (
     <div className="flex items-center justify-center h-screen bg-rose-200">

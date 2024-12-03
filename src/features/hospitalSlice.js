@@ -1,6 +1,7 @@
+// hospitalslice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-// Async thunk to handle hospital registration
+// Async thunk for hospital registration (as you already have)
 export const registerHospital = createAsyncThunk(
   'hospital/registerHospital',
   async (hospitalData, { rejectWithValue }) => {
@@ -18,9 +19,9 @@ export const registerHospital = createAsyncThunk(
       }
 
       const data = await response.json();
-      return data; // Return the hospital data
+      return data;
     } catch (error) {
-      return rejectWithValue(error.message); // Return error message if failure occurs
+      return rejectWithValue(error.message);
     }
   }
 );
@@ -29,10 +30,15 @@ const hospitalSlice = createSlice({
   name: 'hospital',
   initialState: {
     hospitals: [],
+    selectedHospitalId: null, // Store the selected hospital's ID here
     loading: false,
     error: null,
   },
-  reducers: {},
+  reducers: {
+    setSelectedHospitalId: (state, action) => {
+      state.selectedHospitalId = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(registerHospital.pending, (state) => {
@@ -41,7 +47,7 @@ const hospitalSlice = createSlice({
       })
       .addCase(registerHospital.fulfilled, (state, action) => {
         state.loading = false;
-        state.hospitals.push(action.payload); // Add the newly registered hospital to the list
+        state.hospitals.push(action.payload);
       })
       .addCase(registerHospital.rejected, (state, action) => {
         state.loading = false;
@@ -50,4 +56,7 @@ const hospitalSlice = createSlice({
   },
 });
 
+export const { setSelectedHospitalId } = hospitalSlice.actions;
+
+// Export the reducer
 export default hospitalSlice.reducer;

@@ -5,10 +5,12 @@ import { fetchHospitalInfo, selectHospitalInfo } from "../../features/hospitalin
 // Assuming the `hospital` slice has an `id` in the state
 const HospitalInfo = () => {
   const dispatch = useDispatch();
-
+  var selectedHospitalId;
   // Fetch the selected hospital ID from the Redux store directly
-  const selectedHospitalId = useSelector((state) => state.hospital.id);
-
+  
+  const { user } = useSelector((state) => state.auth);
+  const userId = user?.id || 0; // Default to 0 if user is not found
+  console.log(userId);
   // Fetch hospital information from Redux
   const { data: hospitalInfo, loading, error } = useSelector(selectHospitalInfo);
 
