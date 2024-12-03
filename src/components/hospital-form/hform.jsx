@@ -38,7 +38,7 @@ const HospitalRegistration = () => {
     e.preventDefault();
 
     // Prepare hospital data for dispatch
-    const hospitalData = { ...formData, userId, roleId: 1 }; // Ensure roleId is passed
+    const hospitalData = { ...formData, userId, roleId: "" }; // Ensure roleId is passed
     dispatch(registerHospital(hospitalData));
   };
 

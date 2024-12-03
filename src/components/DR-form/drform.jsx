@@ -16,7 +16,7 @@ const DonorRegistration = () => {
 
   const [formData, setFormData] = useState({
     userId: userId,
-    roleId: 2, // Default role for donor
+    roleId: "", // Default role for donor
     fullName: username,
     phoneNumber: "",
     emergencyContact: "",
