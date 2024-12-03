@@ -1,28 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { registerDonor } from "../../features/donorSlice"; // Make sure this matches your file structure
+import { registerDonor } from "../../features/donorSlice"; // Adjust the path as needed
 
 const DonorRegistration = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // Access the Redux store for user data (assumed that it's stored in `user` object in state)
-  const { userId, username } = useSelector((state) => state.user); // Replace `state.user` with correct path
+  // Access the Redux store for user and registration states
+  const { user } = useSelector((state) => state.auth);
   const { loading, error, donor } = useSelector((state) => state.donor);
 
+  const userId = user?.id || 0;
+  const username = user?.username || "";
+
   const [formData, setFormData] = useState({
-    userId: userId || 0, // Get userId from Redux store
-    roleId: 2, // Default role set to 2 for donor
-    fullName: username || "", // Get username from Redux store
+    userId: userId,
+    roleId: 2, // Default role for donor
+    fullName: username,
     phoneNumber: "",
     emergencyContact: "",
     address: "",
     patientId: 0,
     dateOfBirth: "",
-    weight: 5,
-    height: 5,
-    cnic: "35202",
+    weight: "",
+    height: "",
+    cnic: "",
     bloodGroupId: 0,
     email: "",
   });
@@ -46,10 +49,19 @@ const DonorRegistration = () => {
 
   useEffect(() => {
     if (donor) {
-      // If donor is successfully registered, navigate to the dashboard or home page
+      // Navigate to the dashboard or home page upon successful registration
       navigate("/");
     }
   }, [donor, navigate]);
+
+  // Update formData when user changes
+  useEffect(() => {
+    setFormData((prevData) => ({
+      ...prevData,
+      userId: userId,
+      fullName: username,
+    }));
+  }, [userId, username]);
 
   return (
     <div className="flex items-center justify-center h-screen bg-rose-200">

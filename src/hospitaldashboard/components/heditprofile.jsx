@@ -4,13 +4,13 @@ import { fetchHospitalData, updateHospitalData } from "../../features/heditSlice
 
 const HospitalEditProfile = () => {
   const dispatch = useDispatch();
-  const { hospitalData, loading } = useSelector((state) => state.hedit);
+  const { hospitalData, loading, error } = useSelector((state) => state.hedit);
 
   const [formData, setFormData] = useState({
     ownerName: "",
     hospitalName: "",
     phoneNumber: "",
-    hospitalType: "",
+    hospitalType: "Private",
     email: "",
     licenseNumber: "",
     emergencyContact: "",
@@ -176,6 +176,13 @@ const HospitalEditProfile = () => {
               Save Changes
             </button>
           </div>
+
+          {/** Error Message */}
+          {error && (
+            <p className="text-red-500 text-center mt-4">
+              {error}
+            </p>
+          )}
         </form>
       </div>
     </div>

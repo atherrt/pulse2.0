@@ -48,6 +48,55 @@
       "email": "ali@gmail.com",
       "password": "ali",
       "roleId": "hospital"
+    },
+    {
+      "id": "54bc",
+      "username": "Hassan",
+      "email": "h1@gmail.com",
+      "password": "123",
+      "roleId": "donor"
+    },
+    {
+      "id": "6f9c",
+      "username": "Hassan",
+      "email": "athar@gmail.com",
+      "password": "1",
+      "roleId": "hospital"
+    },
+    {
+      "id": "27d1",
+      "username": "athar",
+      "email": "h1@gmail.com",
+      "password": "123",
+      "roleId": "donor"
+    },
+    {
+      "id": "91f0",
+      "username": "Mehroz",
+      "email": "mehroz@gmail.com",
+      "password": "m123",
+      "roleId": "donor"
+    },
+    {
+      "id": "4df6",
+      "username": "Mehroz",
+      "email": "mehroz@gmail.com",
+      "password": "m123",
+      "roleId": "donor"
+    },
+    {
+      "id": "503e",
+      "username": "Hassan",
+      "email": "collectionszinnia@gmail.com",
+      "password": "1",
+      "roleId": "hospital"
+    },
+    {
+      "id": "768d",
+      "username": "h1",
+      "email": "a@gmail.com",
+      "password": "1",
+      "roleId": "hospital"
     }
   ],
   "hospitals": [
@@ -251,6 +300,38 @@
       "height": "180",
       "cnic": "123456789",
       "address": "123 Street, City, Country"
+    },
+    {
+      "id": "373c",
+      "userId": "27d1",
+      "roleId": 2,
+      "fullName": "athar",
+      "phoneNumber": "3124384133",
+      "emergencyContact": "1111",
+      "address": "House 396, Street 15, Rehman Enclave, Lehthrar Road, Islamabad",
+      "patientId": 0,
+      "dateOfBirth": "2024-12-12",
+      "weight": "",
+      "height": "",
+      "cnic": "",
+      "bloodGroupId": "2",
+      "email": "test@email.com"
+    },
+    {
+      "id": "5133",
+      "userId": "4df6",
+      "roleId": 2,
+      "fullName": "Mehroz",
+      "phoneNumber": "3124384133",
+      "emergencyContact": "02084816958",
+      "address": "Shop No 21 New Ubaidullah Traders Near National Bank  Colony Road Mailsi.",
+      "patientId": 0,
+      "dateOfBirth": "2024-12-07",
+      "weight": "",
+      "height": "",
+      "cnic": "",
+      "bloodGroupId": 0,
+      "email": "mehroz@gmail.com"
     }
   ],
   "requests": [

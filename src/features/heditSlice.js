@@ -1,43 +1,38 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
-// Dummy API Data
-const initialDummyData = {
-  ownerName: "John Doe",
-  hospitalName: "City Hospital",
-  phoneNumber: "123-456-7890",
-  hospitalType: "Private",
-  email: "john@example.com",
-  licenseNumber: "LIC123456",
-  emergencyContact: "987-654-3210",
-  websiteURL: "www.cityhospital.com",
-  address: "123 Main St, Springfield",
-  licenseExpiryDate: "2024-12-31",
-};
+// Base URL for your JSON server
+const API_URL = 'http://localhost:5000/hospitals';
 
-// Thunk to fetch data from the API (Simulated)
+// Fetch hospital data (async thunk)
 export const fetchHospitalData = createAsyncThunk(
-  "hedit/fetchHospitalData",
-  async () => {
-    // Simulate a delay for API fetch
-    return new Promise((resolve) => {
-      setTimeout(() => resolve(initialDummyData), 500);
-    });
+  'hedit/fetchHospitalData',
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(`${API_URL}/1`); // Assuming `1` is the hospital ID for demo purposes
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data || error.message);
+    }
   }
 );
 
-// Thunk to post updated data to the API (Simulated)
+// Update hospital data (async thunk)
 export const updateHospitalData = createAsyncThunk(
-  "hedit/updateHospitalData",
-  async (updatedData) => {
-    // Simulate a delay for API post
-    return new Promise((resolve) => {
-      setTimeout(() => resolve(updatedData), 500);
-    });
+  'hedit/updateHospitalData',
+  async (formData, { rejectWithValue }) => {
+    try {
+      const response = await axios.put(`${API_URL}/1`, formData); // Assuming `1` is the hospital ID
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data || error.message);
+    }
   }
 );
 
+// Slice definition
 const heditSlice = createSlice({
-  name: "hedit",
+  name: 'hedit',
   initialState: {
     hospitalData: null,
     loading: false,
@@ -46,30 +41,31 @@ const heditSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      // Fetch Hospital Data
+      // Fetch data cases
       .addCase(fetchHospitalData.pending, (state) => {
         state.loading = true;
+        state.error = null;
       })
       .addCase(fetchHospitalData.fulfilled, (state, action) => {
         state.loading = false;
         state.hospitalData = action.payload;
       })
-      .addCase(fetchHospitalData.rejected, (state) => {
+      .addCase(fetchHospitalData.rejected, (state, action) => {
         state.loading = false;
-        state.error = "Failed to fetch hospital data.";
+        state.error = action.payload;
       })
-
-      // Update Hospital Data
+      // Update data cases
       .addCase(updateHospitalData.pending, (state) => {
         state.loading = true;
+        state.error = null;
       })
       .addCase(updateHospitalData.fulfilled, (state, action) => {
         state.loading = false;
         state.hospitalData = action.payload;
       })
-      .addCase(updateHospitalData.rejected, (state) => {
+      .addCase(updateHospitalData.rejected, (state, action) => {
         state.loading = false;
-        state.error = "Failed to update hospital data.";
+        state.error = action.payload;
       });
   },
 });
